@@ -2,9 +2,9 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>cron4j-mvn</groupId>
+  <groupId>it.sauronsoftware</groupId>
   <artifactId>mvn</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0</version>
   <packaging>jar</packaging>
 
   <name>mvn</name>
@@ -21,6 +21,11 @@
       <version>4.1</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+     <groupId>org.aspectj</groupId>
+     <artifactId>aspectjrt</artifactId>
+     <version>1.7.3</version>
+    </dependency>
   </dependencies>
 
   <build>
@@ -28,7 +33,13 @@
     <plugin>
      <groupId>org.codehaus.mojo</groupId>
      <artifactId>cobertura-maven-plugin</artifactId>
+     <version>2.6</version>
      <configuration>
+      <instrumentation>
+       <excludes>
+        <exclude>classes/it/auronsoftware/cron4j/LogAspect.class</exclude>
+       </excludes>
+      </instrumentation>
       <formats>
        <format>html</format>
       </formats>
@@ -42,6 +53,22 @@
        </goals>
       </execution>
      </executions>
+    </plugin>
+    <plugin>
+     <groupId>org.codehaus.mojo</groupId>
+     <artifactId>aspectj-maven-plugin</artifactId>
+     <version>1.5</version>
+     <executions>
+      <execution>
+       <goals>
+        <goal>compile</goal>
+        <goal>test-compile</goal>
+       </goals>
+      </execution>
+     </executions>
+     <configuration>
+      <complianceLevel>1.6</complianceLevel>
+     </configuration>
     </plugin>
    </plugins>
   </build>
@@ -62,10 +89,8 @@
      <groupId>org.apache.maven.plugins</groupId>
      <artifactId>maven-javadoc-plugin</artifactId>
      <version>2.9.1</version>
-     <configuration>
-     </configuration>
     </plugin>
    </plugins>
   </reporting>
-</project>
 
+</project>
