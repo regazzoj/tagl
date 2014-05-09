@@ -30,8 +30,8 @@ public class AspectJTest {
   public class MyTask implements Runnable {
 
 	public void run() {
-		System.out.println("Current system time: " + new Date());
-		System.out.println("Another minute ticked away...");
+		System.out.println("Une minute vient de passer !");
+		System.out.println("Date courante : " + new Date());
 	}
 
   }

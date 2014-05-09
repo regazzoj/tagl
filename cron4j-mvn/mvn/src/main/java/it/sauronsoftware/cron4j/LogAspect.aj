@@ -4,10 +4,10 @@ public aspect LogAspect {
         pointcut logExecute() : execution(void execute(TaskExecutionContext));
 
         before() : logExecute() { 
-		System.out.println("Before execution..."); 
+		System.out.println("Avant l'exécution..."); 
 	} 
 
         after() : logExecute() { 
-		System.out.println("After execution..."); 
+		System.out.println("Après l'exécution..."); 
 	} 
 }
